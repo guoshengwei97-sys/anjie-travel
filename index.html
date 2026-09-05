@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>安吉两天一夜 · 经典网红线游玩攻略</title>
+<meta name="description" content="安吉两天一夜经典网红线游玩攻略：竹海·云上草原·乡村治愈，含行程时间线、住宿建议、必吃美食、避坑贴士">
+<meta property="og:title" content="安吉两天一夜 · 经典网红线游玩攻略">
+<meta property="og:description" content="竹海·云上草原·乡村治愈，两天一夜轻松玩转安吉，含行程时间线、住宿美食、避坑贴士">
+<meta property="og:image" content="https://anjie-travel.pages.dev/images/image1.jpg">
+<meta property="og:url" content="https://anjie-travel.pages.dev/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="安吉两天一夜 · 经典网红线游玩攻略">
+<meta name="twitter:description" content="竹海·云上草原·乡村治愈，两天一夜轻松玩转安吉">
+<meta name="twitter:image" content="https://anjie-travel.pages.dev/images/image1.jpg">
 <style>
   :root{
     --green-900:#143d26; --green-700:#1f6b3c; --green-500:#2f8f52;
@@ -221,7 +231,7 @@
     .bottom-nav a:active{background:var(--green-100);color:var(--green-700)}
     /* Hero 竖屏优化 */
     .hero{min-height:720px;margin-top:50px;padding:20px 0;display:flex;align-items:center;justify-content:center}
-    .hero .inner{padding:28px 22px;background:rgba(10,35,20,.85);backdrop-filter:blur(8px);border-radius:18px;border:1px solid rgba(255,255,255,.2);max-width:340px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.35);flex-shrink:0}
+    .hero .inner{padding:28px 22px;background:rgba(10,35,20,.68);backdrop-filter:blur(10px);border-radius:18px;border:1px solid rgba(255,255,255,.2);max-width:340px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.35);flex-shrink:0}
     .hero .eyebrow{font-size:11px;letter-spacing:2px;padding:6px 14px;margin-bottom:18px}
     .hero h1{font-size:38px;letter-spacing:2px;line-height:1.25}
     .hero .sub{font-size:15px;letter-spacing:1px;margin-top:14px}
@@ -352,6 +362,26 @@
     .bottom-nav a{font-size:9px;gap:1px;padding:3px 1px}
     .bottom-nav a .ico{font-size:15px}
     .tl-time{font-size:11px;padding:4px 8px}
+  }
+
+  /* ===== 缺图卡片视觉占位区 ===== */
+  .card-visual{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .card-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.18),transparent 60%)}
+  .card-visual .card-ico{font-size:64px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.25));position:relative;z-index:1}
+  .cv-sky{background:linear-gradient(135deg,#1a5276,#2e86c1,#5dade2)}
+  .cv-cliff{background:linear-gradient(135deg,#7b241c,#c0392b,#e67e22)}
+  .cv-warm{background:linear-gradient(135deg,#7d6608,#b7950b,#f4d03f)}
+  .cv-rice{background:linear-gradient(135deg,#2c3e50,#4a235a,#6c3483)}
+  /* Day2 提示条图标 */
+  .tip-ico{font-size:28px;margin-bottom:8px;display:block}
+  /* Day2 板块间距优化，增加呼吸感 */
+  .tipbar{margin-bottom:40px}
+  .info-grid{margin-bottom:8px}
+  /* 移动端适配 */
+  @media(max-width:768px){
+    .card-visual{height:auto;aspect-ratio:4/3}
+    .card-visual .card-ico{font-size:48px}
+    .tip-ico{font-size:24px;margin-bottom:6px}
   }
 </style>
 </head>
@@ -536,14 +566,17 @@
     </div>
     <div class="tipbar">
       <div class="tip">
+        <div class="tip-ico">🎫</div>
         <h5>提前购票</h5>
         <p>建议提前网购门票与索道票，尽量在 9 点前入园，避开排队高峰。</p>
       </div>
       <div class="tip">
+        <div class="tip-ico">🧥</div>
         <h5>注意温差</h5>
         <p>山顶气温比山下低 5-8℃，记得备好薄外套，防风保暖。</p>
       </div>
       <div class="tip">
+        <div class="tip-ico">👟</div>
         <h5>安全着装</h5>
         <p>体验高空项目时，避免穿着短裙或拖鞋，确保游玩安全与便利。</p>
       </div>
@@ -602,21 +635,24 @@
         </div>
       </div>
       <div class="play-card">
-        <div class="body" style="padding-top:26px">
+        <div class="card-visual cv-sky"><span class="card-ico">🏔️</span></div>
+        <div class="body">
           <div class="no">04 惊险挑战</div>
           <h4>云端步道 · 步步惊心</h4>
           <p>依悬崖而建的悬空步道，脚下是翻滚的云海与万丈深渊，每一步都能感受心跳加速的刺激，仿佛漫步在云端边缘。</p>
         </div>
       </div>
       <div class="play-card">
-        <div class="body" style="padding-top:26px">
+        <div class="card-visual cv-cliff"><span class="card-ico">🎢</span></div>
+        <div class="body">
           <div class="no">05 勇敢者挑战</div>
           <h4>悬崖秋千 · 肾上腺素飙升</h4>
           <p>从悬崖边纵身一跃，在百米高空尽情荡漾，感受失重带来的极致快感，是勇敢者的专属挑战，留下难忘的尖叫体验。</p>
         </div>
       </div>
       <div class="play-card">
-        <div class="body" style="padding-top:26px">
+        <div class="card-visual cv-warm"><span class="card-ico">🍱</span></div>
+        <div class="body">
           <div class="no">06 能量补给</div>
           <h4>山顶补给 · 能量加油站</h4>
           <p>山顶设有观景餐厅，提供地道的山野简餐与特色小吃；也可自带零食、饮用水，在云海相伴中享受惬意的午餐时光。</p>
@@ -684,7 +720,8 @@
           </div>
         </div>
         <div class="food-card">
-          <div class="body" style="padding-top:34px">
+          <div class="card-visual cv-rice"><span class="card-ico">🍚</span></div>
+          <div class="body">
             <h4>乌米饭</h4>
             <p>南烛叶汁浸泡糯米蒸制而成，色泽乌润，口感软糯香甜，带着独特的草木清香，营养丰富。</p>
           </div>
