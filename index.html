@@ -193,6 +193,138 @@
   footer b{color:#fff}
   .totop{position:fixed;right:26px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:50%;background:var(--green-500);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(20,61,38,.3);opacity:0;pointer-events:none;transition:opacity .3s}
   .totop.show{opacity:1;pointer-events:auto}
+
+  /* ===== 移动端 9:16 竖屏适配 ===== */
+  .bottom-nav{display:none}
+  @media(max-width:768px){
+    body{padding-bottom:58px}
+    .wrap{padding:0 16px}
+    section{padding:48px 0}
+    /* 顶部导航：只保留标题，链接移到底部 */
+    .topnav .wrap{height:50px;justify-content:center}
+    .brand{font-size:15px;gap:8px}
+    .brand .logo{width:28px;height:28px;font-size:15px;border-radius:8px}
+    .topnav .nav-links{display:none !important}
+    /* 底部固定导航栏 */
+    .bottom-nav{
+      display:flex;position:fixed;bottom:0;left:0;right:0;z-index:100;
+      background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
+      border-top:1px solid rgba(20,61,38,.1);
+      padding:7px 2px calc(7px + env(safe-area-inset-bottom));
+      box-shadow:0 -4px 16px rgba(20,61,38,.08);
+    }
+    .bottom-nav a{
+      flex:1;text-align:center;text-decoration:none;color:var(--ink-soft);
+      font-size:11px;font-weight:700;padding:5px 2px;letter-spacing:.5px;
+      border-radius:8px;transition:color .2s,background .2s;
+    }
+    .bottom-nav a:active{background:var(--green-100);color:var(--green-700)}
+    /* Hero 竖屏优化 */
+    .hero{min-height:720px;margin-top:50px;padding:20px 0;display:flex;align-items:center;justify-content:center}
+    .hero .inner{padding:28px 22px;background:rgba(10,35,20,.85);backdrop-filter:blur(8px);border-radius:18px;border:1px solid rgba(255,255,255,.2);max-width:340px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.35);flex-shrink:0}
+    .hero .eyebrow{font-size:11px;letter-spacing:2px;padding:6px 14px;margin-bottom:18px}
+    .hero h1{font-size:38px;letter-spacing:2px;line-height:1.25}
+    .hero .sub{font-size:15px;letter-spacing:1px;margin-top:14px}
+    .hero .desc{font-size:12px;margin-top:10px;line-height:1.6}
+    .hero .badges{gap:8px;margin-top:22px}
+    .hero .badge{font-size:11px;padding:6px 12px}
+    .hero .cta{margin-top:26px;gap:10px;flex-direction:column;align-items:center}
+    .hero .cta .btn{width:200px;text-align:center}
+    .btn{padding:12px 28px;font-size:14px}
+    .hero::after{background:linear-gradient(180deg,rgba(10,35,20,.65) 0%,rgba(10,35,20,.55) 30%,rgba(10,35,20,.65) 60%,rgba(10,35,20,.88) 100%)}
+    .hero h1{text-shadow:0 2px 20px rgba(0,0,0,.55)}
+    .hero .sub,.hero .desc{text-shadow:0 1px 10px rgba(0,0,0,.45)}
+    .scroll-hint{font-size:11px;bottom:16px}
+    /* 区块标题 */
+    .sec-head{margin-bottom:30px}
+    .sec-tag{font-size:11px;padding:5px 12px;margin-bottom:12px}
+    .sec-head h2{font-size:24px;letter-spacing:1px}
+    .sec-head p{font-size:13px;margin-top:8px}
+    /* 图片全部改为比例自适应，杜绝拉伸 */
+    .tl-card img{height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin-top:12px}
+    .panel img{height:auto;aspect-ratio:16/10}
+    .play-card img{height:auto;aspect-ratio:4/3}
+    .food-card img{height:auto;aspect-ratio:4/3}
+    .farewell img{min-height:0;aspect-ratio:4/3;display:block}
+    .stay-card{min-height:300px}
+    .stay-card .info{padding:20px}
+    .stay-card h4{font-size:18px}
+    .stay-card p{font-size:12.5px}
+    .stay-card .price{font-size:12px;padding:3px 12px}
+    /* 时间线竖屏布局 */
+    .tl::before{left:70px}
+    .tl-item{gap:10px;margin-bottom:18px}
+    .tl-time{flex:0 0 58px;font-size:11px;padding-top:3px;text-align:right;line-height:1.4}
+    .tl-dot{flex:0 0 10px;height:10px;margin-top:7px}
+    .tl-card{padding:16px 16px}
+    .tl-card h4{font-size:15.5px;margin-bottom:4px}
+    .tl-card p{font-size:12.5px}
+    .tl-card .meta{gap:5px;margin:8px 0 10px}
+    .meta span{font-size:10.5px;padding:3px 9px}
+    /* 概览卡片 */
+    .feature{padding:20px 18px}
+    .feature .num{font-size:10.5px}
+    .feature h3{font-size:16.5px;margin:6px 0 8px}
+    .feature p{font-size:12.5px}
+    .day-card .head{padding:12px 16px}
+    .day-card .head h3{font-size:15.5px}
+    .day-card .head .sub{font-size:10.5px}
+    .day-card .body{padding:16px}
+    .day-card .body p{font-size:12.5px}
+    .day-card .spots{gap:6px;margin-top:12px}
+    .chip{font-size:11px;padding:4px 10px}
+    /* Day2 信息条 */
+    .tipbar{gap:10px;margin-bottom:20px}
+    .tip{padding:14px 16px}
+    .tip h5{font-size:13.5px;margin-bottom:4px}
+    .tip p{font-size:12px}
+    .info-grid{gap:10px}
+    .info-card{padding:14px 16px}
+    .info-card .k{font-size:10.5px}
+    .info-card h5{font-size:13.5px;margin:5px 0 6px}
+    .info-card p{font-size:12px}
+    /* 必玩项目 */
+    .play-card .body{padding:14px 16px}
+    .play-card .no{font-size:10.5px}
+    .play-card h4{font-size:15.5px;margin:5px 0 6px}
+    .play-card p{font-size:12px}
+    /* 美食 */
+    .food-sec{margin-bottom:26px}
+    .food-sec h3{font-size:18px;margin-bottom:12px}
+    .food-card .body{padding:14px 16px}
+    .food-card h4{font-size:14.5px;margin-bottom:6px}
+    .food-card p{font-size:12px}
+    .mini{padding:14px 16px}
+    .mini h5{font-size:13.5px;margin-bottom:5px}
+    .mini p{font-size:11.5px}
+    /* 告别 */
+    .farewell .body{padding:28px 20px}
+    .farewell .body h3{font-size:20px;margin-bottom:10px}
+    .farewell .body p{font-size:12.5px}
+    .farewell .meta{margin-top:14px;gap:8px}
+    .farewell .meta div{font-size:12px;padding:8px 12px}
+    /* 避坑贴士 */
+    .tips-grid{gap:12px}
+    .tips-card{padding:16px;gap:12px}
+    .tips-card .n{flex:0 0 32px;height:32px;font-size:13.5px;border-radius:9px}
+    .tips-card h5{font-size:14px;margin-bottom:4px}
+    .tips-card p{font-size:12px}
+    .night-note{margin-top:18px;padding:12px 16px;font-size:12.5px}
+    /* 分隔横幅 */
+    .divider{height:200px}
+    .divider .quote{font-size:14.5px;letter-spacing:1px;padding:0 20px;line-height:1.6}
+    footer{padding:24px 16px 70px;font-size:11.5px}
+  }
+  /* 超小屏进一步收紧 */
+  /* 超小屏进一步收紧 */
+  @media(max-width:380px){
+    .nav-links{gap:7px}
+    .nav-links a{font-size:10px}
+    .hero h1{font-size:34px}
+    .hero .sub{font-size:14px}
+    .sec-head h2{font-size:22px}
+  }
+
 </style>
 </head>
 <body>
@@ -630,5 +762,13 @@
     if(cur && map[cur]) map[cur].classList.add("active");
   });
 </script>
+<nav class="bottom-nav">
+  <a href="#overview">概览</a>
+  <a href="#day1">DAY1</a>
+  <a href="#stay">住宿</a>
+  <a href="#day2">DAY2</a>
+  <a href="#food">美食</a>
+  <a href="#tips">贴士</a>
+</nav>
 </body>
 </html>
