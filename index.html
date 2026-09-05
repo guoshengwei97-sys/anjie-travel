@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安吉两天一夜 · 经典网红线游玩攻略</title>
+<style>
+  :root{
+    --green-900:#143d26; --green-700:#1f6b3c; --green-500:#2f8f52;
+    --green-300:#7cc291; --green-100:#eaf4ec; --green-50:#f6faf6;
+    --cream:#fbf9f3; --ink:#2c3a30; --ink-soft:#5c6b60;
+    --orange:#d97b34; --orange-soft:#fdf0e3;
+    --shadow:0 10px 30px rgba(20,61,38,.10);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+    color:var(--ink);background:var(--cream);line-height:1.75;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* ===== 顶部导航 ===== */
+  .topnav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(20,61,38,.08);
+  }
+  .topnav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;color:var(--green-900)}
+  .brand .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--green-500),var(--green-300));display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+  .nav-links{display:flex;gap:26px;list-style:none}
+  .nav-links a{text-decoration:none;color:var(--ink-soft);font-size:14px;font-weight:600;transition:color .2s}
+  .nav-links a:hover{color:var(--green-700)}
+  .nav-links a.active{color:var(--green-700)}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;margin-top:62px}
+  .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,35,20,.45) 0%,rgba(10,35,20,.30) 50%,rgba(10,35,20,.72) 100%)}
+  .hero .inner{position:relative;z-index:2;color:#fff;padding:0 24px}
+  .hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:3px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);padding:7px 18px;border-radius:999px;margin-bottom:26px}
+  .hero h1{font-size:clamp(40px,7vw,76px);font-weight:900;letter-spacing:4px;line-height:1.15;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+  .hero .sub{margin-top:18px;font-size:clamp(16px,2.4vw,22px);font-weight:500;letter-spacing:2px;opacity:.95}
+  .hero .desc{margin-top:14px;font-size:14px;opacity:.8;letter-spacing:1px}
+  .hero .badges{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero .badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);padding:8px 20px;border-radius:999px;font-size:14px;backdrop-filter:blur(4px)}
+  .hero .cta{margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;padding:13px 34px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--green-500);color:#fff;box-shadow:0 8px 24px rgba(47,143,82,.4)}
+  .btn-ghost{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.5)}
+  .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.75);font-size:12px;letter-spacing:2px;animation:float 2s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+  /* ===== 通用区块 ===== */
+  section{padding:84px 0}
+  .sec-head{text-align:center;margin-bottom:52px}
+  .sec-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:3px;color:var(--green-700);background:var(--green-100);padding:6px 16px;border-radius:999px;margin-bottom:16px}
+  .sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:900;color:var(--green-900);letter-spacing:2px}
+  .sec-head p{color:var(--ink-soft);margin-top:10px;font-size:15px}
+
+  /* ===== 概览亮点 ===== */
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  @media(max-width:860px){.features{grid-template-columns:1fr}}
+  .feature{background:#fff;border-radius:var(--radius);padding:34px 28px;box-shadow:var(--shadow);border-top:4px solid var(--green-500);transition:transform .25s}
+  .feature:hover{transform:translateY(-6px)}
+  .feature .num{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--orange)}
+  .feature h3{font-size:21px;color:var(--green-900);margin:8px 0 12px;font-weight:800}
+  .feature p{font-size:14px;color:var(--ink-soft)}
+
+  /* ===== 速览 ===== */
+  .overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px}
+  @media(max-width:860px){.overview-grid{grid-template-columns:1fr}}
+  .day-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .day-card .head{display:flex;align-items:center;justify-content:space-between;padding:18px 26px;color:#fff}
+  .day-card.d1 .head{background:linear-gradient(120deg,#1f6b3c,#2f8f52)}
+  .day-card.d2 .head{background:linear-gradient(120deg,#b3621f,#d97b34)}
+  .day-card .head h3{font-size:19px;font-weight:800;letter-spacing:1px}
+  .day-card .head .sub{font-size:12px;opacity:.85}
+  .day-card .body{padding:24px 26px}
+  .day-card .body p{font-size:14px;color:var(--ink-soft)}
+  .day-card .spots{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:var(--green-100);color:var(--green-700);font-size:13px;font-weight:600;padding:5px 14px;border-radius:999px}
+
+  /* ===== 时间线卡片 ===== */
+  .tl{position:relative;margin-top:8px}
+  .tl::before{content:"";position:absolute;left:118px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--green-300),var(--orange))}
+  @media(max-width:720px){.tl::before{left:12px}}
+  .tl-item{position:relative;display:flex;gap:26px;margin-bottom:30px}
+  .tl-time{flex:0 0 100px;text-align:right;font-weight:800;color:var(--green-700);font-size:15px;padding-top:6px}
+  @media(max-width:720px){.tl-time{flex:0 0 0;writing-mode:horizontal-tb;text-align:left;font-size:13px;min-width:88px}}
+  .tl-dot{flex:0 0 14px;height:14px;border-radius:50%;background:var(--green-500);border:3px solid #fff;box-shadow:0 0 0 2px var(--green-300);margin-top:12px;z-index:1}
+  .tl-card{flex:1;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 28px}
+  .tl-card h4{font-size:19px;font-weight:800;color:var(--green-900);margin-bottom:6px}
+  .tl-card .meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 12px}
+  .meta span{font-size:12px;font-weight:600;background:var(--green-50);border:1px solid var(--green-100);color:var(--green-700);padding:4px 12px;border-radius:999px}
+  .tl-card p{font-size:14px;color:var(--ink-soft)}
+  .tl-card img{width:100%;height:210px;object-fit:cover;border-radius:12px;margin-top:14px}
+
+  /* ===== 分隔横幅 ===== */
+  .divider{position:relative;padding:0;height:340px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+  .divider img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .divider::after{content:"";position:absolute;inset:0;background:rgba(10,35,20,.55)}
+  .divider .quote{position:relative;z-index:2;color:#fff;font-size:clamp(18px,3vw,26px);font-weight:600;letter-spacing:2px;padding:0 24px}
+
+  /* ===== 双列介绍 ===== */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  @media(max-width:860px){.duo{grid-template-columns:1fr}}
+  .panel{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .panel img{width:100%;height:250px;object-fit:cover;display:block}
+  .panel .body{padding:26px 28px}
+  .panel .body h4{font-size:19px;font-weight:800;color:var(--green-900);margin-bottom:10px}
+  .panel .body p{font-size:14px;color:var(--ink-soft)}
+
+  /* ===== 住宿 ===== */
+  .stay-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  @media(max-width:860px){.stay-grid{grid-template-columns:1fr}}
+  .stay-card{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:400px;display:flex;align-items:flex-end}
+  .stay-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .stay-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,35,20,0) 30%,rgba(10,35,20,.88) 100%)}
+  .stay-card .info{position:relative;z-index:2;color:#fff;padding:30px}
+  .stay-card .no{font-size:13px;font-weight:800;letter-spacing:2px;color:#cde8d4}
+  .stay-card h4{font-size:22px;font-weight:800;margin:6px 0 8px}
+  .stay-card .price{display:inline-block;background:var(--orange);padding:4px 14px;border-radius:999px;font-size:13px;font-weight:700;margin-bottom:10px}
+  .stay-card p{font-size:13.5px;opacity:.92}
+  .night-note{margin-top:26px;background:var(--green-100);border-left:4px solid var(--green-500);border-radius:12px;padding:18px 24px;font-size:14px;color:var(--green-900)}
+
+  /* ===== Day2 信息条 ===== */
+  .tipbar{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:34px}
+  @media(max-width:860px){.tipbar{grid-template-columns:1fr}}
+  .tip{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:22px 24px;border-bottom:3px solid var(--green-500)}
+  .tip h5{font-size:15px;font-weight:800;color:var(--green-900);margin-bottom:6px}
+  .tip p{font-size:13.5px;color:var(--ink-soft)}
+  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.info-grid{grid-template-columns:1fr}}
+  .info-card{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:22px 24px}
+  .info-card .k{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--orange)}
+  .info-card h5{font-size:16px;font-weight:800;color:var(--green-900);margin:6px 0 8px}
+  .info-card p{font-size:13.5px;color:var(--ink-soft)}
+
+  /* ===== 必玩项目 ===== */
+  .play-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:900px){.play-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.play-grid{grid-template-columns:1fr}}
+  .play-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:transform .25s}
+  .play-card:hover{transform:translateY(-6px)}
+  .play-card img{width:100%;height:200px;object-fit:cover;display:block}
+  .play-card .body{padding:22px 24px}
+  .play-card .no{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--orange)}
+  .play-card h4{font-size:18px;font-weight:800;color:var(--green-900);margin:6px 0 8px}
+  .play-card p{font-size:13.5px;color:var(--ink-soft)}
+
+  /* ===== 告别 ===== */
+  .farewell{background:linear-gradient(160deg,var(--green-900),#0f2b1b);color:#fff;border-radius:26px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr}
+  @media(max-width:860px){.farewell{grid-template-columns:1fr}}
+  .farewell .body{padding:52px 46px;display:flex;flex-direction:column;justify-content:center}
+  .farewell .body h3{font-size:26px;font-weight:800;margin-bottom:14px}
+  .farewell .body p{font-size:14.5px;opacity:.88}
+  .farewell .meta{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+  .farewell .meta div{font-size:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 18px}
+  .farewell img{width:100%;height:100%;min-height:320px;object-fit:cover}
+
+  /* ===== 美食 ===== */
+  .food-sec{margin-bottom:40px}
+  .food-sec h3{font-size:22px;font-weight:800;color:var(--green-900);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+  .food-sec h3::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,var(--green-100),transparent)}
+  .food-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  @media(max-width:720px){.food-grid{grid-template-columns:1fr}}
+  .food-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+  .food-card img{width:100%;height:200px;object-fit:cover}
+  .food-card .body{padding:22px 24px;flex:1}
+  .food-card h4{font-size:17px;font-weight:800;color:var(--green-900);margin-bottom:8px}
+  .food-card p{font-size:13.5px;color:var(--ink-soft)}
+  .food-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:900px){.food-mini{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.food-mini{grid-template-columns:1fr}}
+  .mini{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:20px 22px}
+  .mini h5{font-size:15px;font-weight:800;color:var(--green-900);margin-bottom:6px}
+  .mini p{font-size:13px;color:var(--ink-soft)}
+
+  /* ===== 避坑贴士 ===== */
+  .tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  @media(max-width:860px){.tips-grid{grid-template-columns:1fr}}
+  .tips-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 28px;display:flex;gap:18px;align-items:flex-start}
+  .tips-card .n{flex:0 0 42px;height:42px;border-radius:12px;background:var(--orange-soft);color:var(--orange);font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .tips-card h5{font-size:16px;font-weight:800;color:var(--green-900);margin-bottom:6px}
+  .tips-card p{font-size:13.5px;color:var(--ink-soft)}
+
+  footer{background:var(--green-900);color:rgba(255,255,255,.75);text-align:center;padding:40px 24px;font-size:13px;letter-spacing:1px}
+  footer b{color:#fff}
+  .totop{position:fixed;right:26px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:50%;background:var(--green-500);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(20,61,38,.3);opacity:0;pointer-events:none;transition:opacity .3s}
+  .totop.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <div class="brand"><div class="logo">安</div>安吉两天一夜</div>
+    <ul class="nav-links">
+      <li><a href="#overview">行程概览</a></li>
+      <li><a href="#day1">DAY 1</a></li>
+      <li><a href="#stay">住宿建议</a></li>
+      <li><a href="#day2">DAY 2</a></li>
+      <li><a href="#food">必吃美食</a></li>
+      <li><a href="#tips">避坑贴士</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <img class="" alt="安吉竹海山林风光" src="images/image1.jpg">
+  <div class="inner">
+    <span class="eyebrow">经典网红线 · 两天一夜</span>
+    <h1>安吉两天一夜</h1>
+    <div class="sub">奔赴一场自然与治愈的山野之约</div>
+    <div class="desc">解锁江浙沪周边的宝藏避暑胜地</div>
+    <div class="badges">
+      <span class="badge">自然风光沉浸</span>
+      <span class="badge">网红潮玩体验</span>
+      <span class="badge">地道美食民宿</span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-primary" href="#overview">查看行程</a>
+      <a class="btn btn-ghost" href="#tips">出行避坑</a>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL ↓</div>
+</header>
+
+<!-- 行程概览 -->
+<section id="overview">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">行程概览</span>
+      <h2>经典网红线</h2>
+      <p>竹海 · 云上草原 · 乡村治愈，两天一夜轻松玩转安吉</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="num">FEATURE 01</div>
+        <h3>自然风光沉浸</h3>
+        <p>打卡《卧虎藏龙》取景地中国大竹海，漫步"两山"理念发源地余村，在满目青翠中感受自然生态之美。</p>
+      </div>
+      <div class="feature">
+        <div class="num">FEATURE 02</div>
+        <h3>网红潮玩体验</h3>
+        <p>挑战云上草原高空秋千、彩虹滑草等刺激项目，打卡矿坑瀑布咖啡，随手一拍即是大片，出片率满分。</p>
+      </div>
+      <div class="feature">
+        <div class="num">FEATURE 03</div>
+        <h3>地道美食民宿</h3>
+        <p>品尝安吉笋干、农家土鸡等地道风味，入住推窗见竹海的特色民宿，沉浸式体验慢节奏的乡村生活。</p>
+      </div>
+    </div>
+    <div class="overview-grid">
+      <div class="day-card d1">
+        <div class="head"><h3>Day 1 · 竹海寻踪</h3><span class="sub">自然人文之旅</span></div>
+        <div class="body">
+          <p>抵达安吉 → 中国大竹海 → 余村漫步。万亩竹海，探访"两山"发源地，感受自然与人文的交融，夜宿天荒坪或山川乡特色民宿。</p>
+          <div class="spots"><span class="chip">中国大竹海</span><span class="chip">余村</span><span class="chip">瀑布咖啡</span><span class="chip">农家午餐</span></div>
+        </div>
+      </div>
+      <div class="day-card d2">
+        <div class="head"><h3>Day 2 · 云上畅玩</h3><span class="sub">高山网红之旅</span></div>
+        <div class="body">
+          <p>云上草原畅玩 → 白茶观景台 → 返程。全天体验高山草原网红项目，打卡白茶观景台俯瞰茶山云海，午后适时返程。</p>
+          <div class="spots"><span class="chip">云上草原</span><span class="chip">天空之阶</span><span class="chip">彩虹滑草</span><span class="chip">白茶观景台</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 1 -->
+<section id="day1" style="background:#fff">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">DAY 1 · 竹海寻踪</span>
+      <h2>乡野漫步，竹海寻踪</h2>
+      <p>漫步连绵竹林，仿佛闯入武侠电影的世界</p>
+    </div>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-time">10:30-12:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <h4>中国大竹海</h4>
+          <div class="meta"><span>门票 58元/人</span><span>《卧虎藏龙》取景地</span><span>天然氧吧</span></div>
+          <p>漫步于连绵起伏的竹林间，仿佛闯入了武侠电影的世界。这里不仅是《卧虎藏龙》的经典取景地，更是远离城市喧嚣的天然氧吧。深呼吸一口，满是清新的竹香，让人心旷神怡。万亩竹林浩瀚如海，登顶观竹楼可俯瞰竹海全景，视野开阔，是摄影爱好者的天堂，随手一拍皆是大片。</p>
+          <img class="" alt="中国大竹海" src="images/image9.jpg">
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00</div>
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <h4>地道农家风味午餐</h4>
+          <div class="meta"><span>人均 50-70元</span><span>景区周边农家乐</span></div>
+          <p>推荐景区周边特色农家乐。必点：鲜美的土鸡汤、鲜香的笋干烧肉、鲜嫩小河虾，品尝地道的安吉山野美味。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">13:30-15:30</div>
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <h4>安吉余村</h4>
+          <div class="meta"><span>门票免费</span><span>"两山"理念发源地</span></div>
+          <p>这里是"绿水青山就是金山银山"的发源地，白墙黛瓦的江南村落被溪水温柔环绕。漫步青石板路，目之所及皆是田园诗意，随手一拍便是清新治愈的田园大片，是感受自然与人文交融的绝佳之地。</p>
+          <img class="" alt="安吉余村" src="images/image14.jpg">
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">顺路打卡</div>
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <h4>瀑布咖啡 · 矿坑秘境</h4>
+          <div class="meta"><span>湖光山色间的网红地标</span></div>
+          <p>藏在废弃矿坑中的绝美角落，茅草屋顶的小屋临湖而建，背后是倾泻而下的瀑布。在这里点上一杯香醇咖啡，伴着水声与微风，享受独一份的山野松弛感，是旅途中不可错过的惬意体验。</p>
+          <img class="" alt="矿坑瀑布咖啡" src="images/image15.jpg">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <img class="bg" alt="安吉竹林" src="images/image2.jpg">
+  <div class="quote">置身天然氧吧，品味地道风味，开启一场治愈身心的竹海之旅</div>
+</div>
+
+<!-- 住宿建议 -->
+<section id="stay">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">DAY 1 · 住宿建议</span>
+      <h2>夜宿竹海，推窗见景</h2>
+      <p>两种价位方案，按需选择</p>
+    </div>
+    <div class="stay-grid">
+      <div class="stay-card">
+        <img class="" alt="山间特色民宿" src="images/image16.jpg">
+        <div class="info">
+          <div class="no">01 推荐首选</div>
+          <h4>山川乡 / 天荒坪镇</h4>
+          <span class="price">400 - 800元/晚</span>
+          <p>紧邻云上草原景区，环境清幽静谧，推开窗即是满目竹海，沉浸式体验山野之趣，是深度体验自然的优选。</p>
+        </div>
+      </div>
+      <div class="stay-card" style="background:linear-gradient(160deg,#4a5a50,#2c3a30)">
+        <div class="info">
+          <div class="no">02 性价比之选</div>
+          <h4>递铺镇（县城）</h4>
+          <span class="price">200 - 350元/晚</span>
+          <p>酒店选择丰富，餐饮外卖便捷，生活配套完善，适合追求便利与性价比的朋友，经济实惠，出行无忧。</p>
+        </div>
+      </div>
+    </div>
+    <div class="night-note">
+      <b>夜晚惬意时光：</b>在民宿享用地道农家菜，饭后漫步山间，仰望纯净星空，感受远离城市喧嚣的宁静与治愈。
+    </div>
+  </div>
+</section>
+
+<!-- DAY 2 -->
+<section id="day2" style="background:#fff">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">DAY 2 · 云上草原</span>
+      <h2>云上草原，嗨玩全天</h2>
+      <p>索道直上云端，俯瞰竹海山峦</p>
+    </div>
+    <div class="tipbar">
+      <div class="tip">
+        <h5>提前购票</h5>
+        <p>建议提前网购门票与索道票，尽量在 9 点前入园，避开排队高峰。</p>
+      </div>
+      <div class="tip">
+        <h5>注意温差</h5>
+        <p>山顶气温比山下低 5-8℃，记得备好薄外套，防风保暖。</p>
+      </div>
+      <div class="tip">
+        <h5>安全着装</h5>
+        <p>体验高空项目时，避免穿着短裙或拖鞋，确保游玩安全与便利。</p>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="k">TIME</div>
+        <h5>游玩时段</h5>
+        <p>08:30 - 14:00，全天畅玩。</p>
+      </div>
+      <div class="info-card">
+        <div class="k">COST</div>
+        <h5>费用参考</h5>
+        <p>套票约 240 元，含门票及往返索道。景区内餐饮选择丰富，可自带零食补充体力。</p>
+      </div>
+      <div class="info-card">
+        <div class="k">ROUTE</div>
+        <h5>核心玩法</h5>
+        <p>乘坐高山索道俯瞰竹海山峦 → 漫步万亩高山草甸，打卡"天空之阶"等网红地标 → 畅玩彩虹滑草、卡丁车等趣味项目，嗨翻云端。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 必玩项目 -->
+<section id="day2-play">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">DAY 2 · 必玩项目</span>
+      <h2>云端之上的心跳体验</h2>
+      <p>置身云海之上，俯瞰山峦起伏</p>
+    </div>
+    <div class="play-grid">
+      <div class="play-card">
+        <img class="" alt="天空之阶玻璃栈道" src="images/image25.jpg">
+        <div class="body">
+          <div class="no">01 网红地标</div>
+          <h4>天空之阶</h4>
+          <p>悬于云海之上的全透明玻璃栈道，视觉冲击力极强。脚下是翻腾的云海，仿佛漫步云端，是景区标志性的网红打卡点。</p>
+        </div>
+      </div>
+      <div class="play-card">
+        <img class="" alt="彩虹滑草" src="images/image26.jpg">
+        <div class="body">
+          <div class="no">02 速度激情</div>
+          <h4>彩虹滑草</h4>
+          <p>从色彩斑斓的七彩滑道飞驰而下，体验速度与激情的碰撞。适合全年龄段游客，是释放压力、收获欢乐的绝佳体验。</p>
+        </div>
+      </div>
+      <div class="play-card">
+        <img class="" alt="霍比特小镇" src="images/image27.jpg">
+        <div class="body">
+          <div class="no">03 童话世界</div>
+          <h4>霍比特小镇</h4>
+          <p>走进童话般的中土世界，色彩缤纷的圆形小屋错落有致，宛如现实版的世外桃源。这里是摄影爱好者的天堂，随手一拍皆是大片。</p>
+        </div>
+      </div>
+      <div class="play-card">
+        <div class="body" style="padding-top:26px">
+          <div class="no">04 惊险挑战</div>
+          <h4>云端步道 · 步步惊心</h4>
+          <p>依悬崖而建的悬空步道，脚下是翻滚的云海与万丈深渊，每一步都能感受心跳加速的刺激，仿佛漫步在云端边缘。</p>
+        </div>
+      </div>
+      <div class="play-card">
+        <div class="body" style="padding-top:26px">
+          <div class="no">05 勇敢者挑战</div>
+          <h4>悬崖秋千 · 肾上腺素飙升</h4>
+          <p>从悬崖边纵身一跃，在百米高空尽情荡漾，感受失重带来的极致快感，是勇敢者的专属挑战，留下难忘的尖叫体验。</p>
+        </div>
+      </div>
+      <div class="play-card">
+        <div class="body" style="padding-top:26px">
+          <div class="no">06 能量补给</div>
+          <h4>山顶补给 · 能量加油站</h4>
+          <p>山顶设有观景餐厅，提供地道的山野简餐与特色小吃；也可自带零食、饮用水，在云海相伴中享受惬意的午餐时光。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 告别安吉 -->
+<section id="farewell" style="background:transparent;padding-top:0">
+  <div class="wrap">
+    <div class="farewell">
+      <div class="body">
+        <h3>DAY 2 · 告别安吉</h3>
+        <p>在白茶观景台，层层叠叠的梯田茶园尽收眼底。找一处临窗的茶座，手捧一杯清香的安吉白茶，伴着满眼的绿意，感受这份独有的宁静与治愈，为旅程留下难忘的记忆。</p>
+        <div class="meta">
+          <div>14:30 - 15:30 · 白茶观景台 &nbsp;|&nbsp; 门票免费 · 无需预约，直接前往游览</div>
+          <div>绝美视野 · 俯瞰梯田，窗边品茶拍照</div>
+          <div>16:00 启程返程 · 带着满满的美好回忆，结束愉快的安吉之旅，平安踏上归途</div>
+        </div>
+      </div>
+      <img class="" alt="白茶观景台茶园" src="images/image28.jpg">
+    </div>
+  </div>
+</section>
+
+<!-- 美食 -->
+<section id="food" style="background:#fff">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">安吉必吃美食</span>
+      <h2>舌尖上的安吉味道</h2>
+      <p>山野风味 + 特色小吃 + 茶香咖韵</p>
+    </div>
+
+    <div class="food-sec">
+      <h3>01 硬菜推荐 · 地道山野风味</h3>
+      <div class="food-grid">
+        <div class="food-card">
+          <img class="" alt="竹林土鸡煲" src="images/image35.jpg">
+          <div class="body">
+            <h4>竹林土鸡煲</h4>
+            <p>选用散养竹林鸡，文火慢炖出金黄浓汤，鸡肉鲜嫩脱骨，汤汁浓郁鲜美，尽显食材本味。</p>
+          </div>
+        </div>
+        <div class="food-card">
+          <img class="" alt="笋干烧肉" src="images/image36.jpg">
+          <div class="body">
+            <h4>笋干烧肉</h4>
+            <p>陈年笋干吸饱五花肉油脂，肥而不腻，肉香与笋鲜交织，咸甜适口，是下饭的绝佳伴侣。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-sec">
+      <h3>02 特色小吃 · 舌尖上的清甜</h3>
+      <div class="food-grid">
+        <div class="food-card">
+          <img class="" alt="安吉干挑面" src="images/image37.jpg">
+          <div class="body">
+            <h4>安吉干挑面</h4>
+            <p>当地特色碱水面，口感劲道爽滑，佐以雪菜、肉丝等鲜美的浇头，干香入味，回味无穷。</p>
+          </div>
+        </div>
+        <div class="food-card">
+          <div class="body" style="padding-top:34px">
+            <h4>乌米饭</h4>
+            <p>南烛叶汁浸泡糯米蒸制而成，色泽乌润，口感软糯香甜，带着独特的草木清香，营养丰富。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-sec">
+      <h3>03 更多风味 · 本地人私藏</h3>
+      <div class="food-mini">
+        <div class="mini">
+          <h5>地道土菜馆</h5>
+          <p>推荐「老李家土菜馆」，食材新鲜、农家风味浓郁；「阿露佳」主打创意安吉菜，环境雅致。</p>
+        </div>
+        <div class="mini">
+          <h5>特色饮品 · 茶香咖韵</h5>
+          <p>安吉白茶的鲜爽融入醇厚拿铁，茶香与咖啡焦香交织，层次丰富，是安吉不可错过的独特风味。</p>
+        </div>
+        <div class="mini">
+          <h5>传统点心 · 清香软糯</h5>
+          <p>天然艾草汁与糯米粉手工制作，色泽翠绿诱人，入口软糯香甜，带着淡淡的艾草清香。</p>
+        </div>
+        <div class="mini">
+          <h5>面条 · 经典早餐</h5>
+          <p>干挑面劲道爽滑，佐以金黄蛋丝与鲜辣酱汁，是当地早餐桌上的经典美味。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 避坑贴士 -->
+<section id="tips">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">实用避坑贴士</span>
+      <h2>出发前，先看这 5 条</h2>
+      <p>让旅途更省心、更安全</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tips-card">
+        <div class="n">1</div>
+        <div>
+          <h5>自驾安全警示</h5>
+          <p>山区弯道多且路况复杂，自驾请务必减速慢行，避免夜间行驶山路，时刻注意观察落石与突发路况。</p>
+        </div>
+      </div>
+      <div class="tips-card">
+        <div class="n">2</div>
+        <div>
+          <h5>错峰出行建议</h5>
+          <p>云上草原等热门景点节假日排队严重，建议早入园；山顶气温较低且风大，无论何时前往都请备好防风薄外套。</p>
+        </div>
+      </div>
+      <div class="tips-card">
+        <div class="n">3</div>
+        <div>
+          <h5>穿着与装备</h5>
+          <p>瀑布景区石阶湿滑，建议穿着防滑性能好的鞋子；夏季山区蚊虫较多，出行前务必携带驱蚊液等防护用品。</p>
+        </div>
+      </div>
+      <div class="tips-card">
+        <div class="n">4</div>
+        <div>
+          <h5>票务与住宿预订</h5>
+          <p>门票建议通过官方线上渠道购买，通常比现场购票更优惠；周末及节假日民宿价格会有明显上浮，建议提前规划行程并预订住宿。</p>
+        </div>
+      </div>
+      <div class="tips-card" style="grid-column:1/-1">
+        <div class="n">5</div>
+        <div>
+          <h5>特产选购指南</h5>
+          <p>路边流动摊贩的特产质量参差不齐，建议前往县城正规超市选购笋干、山核桃等本地特产，品质更有保障，价格也更为实惠透明。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div><b>安吉两天一夜 · 经典网红线游玩攻略</b></div>
+  <div style="margin-top:8px">奔赴一场自然与治愈的山野之约 · 祝你旅途愉快</div>
+</footer>
+
+<button class="totop" id="totop" title="返回顶部">↑</button>
+
+<script>
+  // 返回顶部
+  var totop = document.getElementById("totop");
+  window.addEventListener("scroll", function(){
+    if(window.scrollY > 600){ totop.classList.add("show"); } else { totop.classList.remove("show"); }
+  });
+  totop.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+  // 导航高亮
+  var links = document.querySelectorAll(".nav-links a");
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute("href").slice(1)] = a; });
+  var sections = Object.keys(map).map(function(id){ return document.getElementById(id); });
+  window.addEventListener("scroll", function(){
+    var pos = window.scrollY + 120;
+    var cur = null;
+    sections.forEach(function(s){ if(s && s.offsetTop <= pos) cur = s.id; });
+    links.forEach(function(a){ a.classList.remove("active"); });
+    if(cur && map[cur]) map[cur].classList.add("active");
+  });
+</script>
+</body>
+</html>
