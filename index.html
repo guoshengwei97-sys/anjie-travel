@@ -325,6 +325,33 @@
     .sec-head h2{font-size:22px}
   }
 
+
+  /* ===== UI 体验优化 ===== */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  /* 底部导航图标化 */
+  .bottom-nav a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 2px}
+  .bottom-nav a .ico{font-size:17px;line-height:1;display:block;transition:transform .2s}
+  .bottom-nav a{font-size:10px;font-weight:700}
+  .bottom-nav a.active{color:var(--green-700)}
+  .bottom-nav a.active .ico{transform:scale(1.18)}
+  /* 时间线时间标签增强 */
+  .tl-time{background:var(--green-50);border:1px solid var(--green-100);padding:5px 10px;border-radius:10px;line-height:1.4}
+  /* 卡片悬浮增强 */
+  .feature,.play-card,.food-card,.panel,.day-card{transition:transform .25s,box-shadow .25s}
+  .feature:hover,.play-card:hover,.food-card:hover,.panel:hover,.day-card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(20,61,38,.13)}
+  /* 正文可读性提升 */
+  .tl-card p,.feature p,.day-card .body p,.stay-card p,.play-card p,.food-card p,.tips-card p,.info-card p,.tip p{line-height:1.85}
+  /* 回到顶部按钮增强 */
+  .totop{width:50px;height:50px;font-size:22px;box-shadow:0 8px 24px rgba(20,61,38,.35)}
+  /* 区块间距微调 */
+  .sec-head{margin-bottom:44px}
+  /* 移动端底部导航图标适配 */
+  @media(max-width:768px){
+    .bottom-nav a .ico{font-size:16px}
+    .bottom-nav a{font-size:9.5px;gap:2px}
+    .tl-time{font-size:11px;padding:4px 8px}
+  }
 </style>
 </head>
 <body>
@@ -344,7 +371,7 @@
 </nav>
 
 <header class="hero">
-  <img class="" alt="安吉竹海山林风光" src="images/image1.jpg">
+  <img class="bg" alt="安吉竹海山林风光" src="images/image1.jpg">
   <div class="inner">
     <span class="eyebrow">经典网红线 · 两天一夜</span>
     <h1>安吉两天一夜</h1>
@@ -743,32 +770,45 @@
 <button class="totop" id="totop" title="返回顶部">↑</button>
 
 <script>
+  // 图片懒加载（首屏 hero 图除外）
+  document.querySelectorAll('img').forEach(function(img,i){ if(i>0) img.loading='lazy'; });
+  // 滚动渐入动画
+  var revealEls = document.querySelectorAll('.feature,.day-card,.tl-item,.stay-card,.tip,.info-card,.play-card,.food-card,.mini,.tips-card,.farewell,.divider');
+  revealEls.forEach(function(el){ el.classList.add('reveal'); });
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+    revealEls.forEach(function(el){ observer.observe(el); });
+  } else { revealEls.forEach(function(el){ el.classList.add('visible'); }); }
   // 返回顶部
   var totop = document.getElementById("totop");
   window.addEventListener("scroll", function(){
-    if(window.scrollY > 600){ totop.classList.add("show"); } else { totop.classList.remove("show"); }
+    if(window.scrollY > 500){ totop.classList.add("show"); } else { totop.classList.remove("show"); }
   });
   totop.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
-  // 导航高亮
-  var links = document.querySelectorAll(".nav-links a");
+  // 导航高亮（顶部 + 底部同步）
+  var allLinks = document.querySelectorAll('.nav-links a, .bottom-nav a');
   var map = {};
-  links.forEach(function(a){ map[a.getAttribute("href").slice(1)] = a; });
-  var sections = Object.keys(map).map(function(id){ return document.getElementById(id); });
+  allLinks.forEach(function(a){ map[a.getAttribute("href").slice(1)] = a; });
+  var sections = Object.keys(map).map(function(id){ return document.getElementById(id); }).filter(Boolean);
   window.addEventListener("scroll", function(){
-    var pos = window.scrollY + 120;
+    var pos = window.scrollY + 150;
     var cur = null;
-    sections.forEach(function(s){ if(s && s.offsetTop <= pos) cur = s.id; });
-    links.forEach(function(a){ a.classList.remove("active"); });
+    sections.forEach(function(s){ if(s.offsetTop <= pos) cur = s.id; });
+    allLinks.forEach(function(a){ a.classList.remove("active"); });
     if(cur && map[cur]) map[cur].classList.add("active");
   });
 </script>
 <nav class="bottom-nav">
-  <a href="#overview">概览</a>
-  <a href="#day1">DAY1</a>
-  <a href="#stay">住宿</a>
-  <a href="#day2">DAY2</a>
-  <a href="#food">美食</a>
-  <a href="#tips">贴士</a>
+  <a href="#overview"><span class="ico">📋</span>概览</a>
+  <a href="#day1"><span class="ico">🎋</span>DAY1</a>
+  <a href="#stay"><span class="ico">🏡</span>住宿</a>
+  <a href="#day2"><span class="ico">⛰️</span>DAY2</a>
+  <a href="#food"><span class="ico">🍜</span>美食</a>
+  <a href="#tips"><span class="ico">💡</span>贴士</a>
 </nav>
 </body>
 </html>
