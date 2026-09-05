@@ -1,19 +1,42 @@
-<!DOCTYPE html>
+# -*- coding: utf-8 -*-
+"""将安吉两天一夜攻略 PPT 内容构建为单文件 HTML 网页（图片以 base64 内嵌）。"""
+import base64, os
+
+WEB = os.path.join(os.path.dirname(__file__), "web")
+
+def img_src(name):
+    return f"images/{name}"
+
+def img_tag(name, alt, cls=""):
+    return f'<img class="{cls}" alt="{alt}" src="{img_src(name)}">'
+
+# 预读所有图片
+IM = {k: img_tag(*v) for k, v in {
+    "hero":  ("image1.jpg",  "安吉竹海山林风光"),
+    "bamboo":("image2.jpg",  "水墨竹林"),
+    "dazhuhai":("image9.jpg","中国大竹海"),
+    "yucun": ("image14.jpg", "安吉余村"),
+    "coffee":("image15.jpg", "矿坑瀑布咖啡"),
+    "minsu": ("image16.jpg", "山间特色民宿"),
+    "glass": ("image25.jpg", "天空之阶玻璃栈道"),
+    "slide": ("image26.jpg", "彩虹滑草"),
+    "hobbit":("image27.jpg", "霍比特小镇"),
+    "tea":   ("image28.jpg", "白茶观景台茶园"),
+    "chicken":("image35.jpg","竹林土鸡煲"),
+    "pork":  ("image36.jpg", "笋干烧肉"),
+    "noodle":("image37.jpg", "安吉干挑面"),
+}.items()}
+SRC = {k: img_src(v[0]) for k, v in {
+    "hero":  ("image1.jpg",  "安吉竹海山林风光"),
+    "bamboo":("image2.jpg",  "水墨竹林"),
+}.items()}
+
+HTML = r"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>安吉两天一夜 · 经典网红线游玩攻略</title>
-<meta name="description" content="安吉两天一夜经典网红线游玩攻略：竹海·云上草原·乡村治愈，含行程时间线、住宿建议、必吃美食、避坑贴士">
-<meta property="og:title" content="安吉两天一夜 · 经典网红线游玩攻略">
-<meta property="og:description" content="竹海·云上草原·乡村治愈，两天一夜轻松玩转安吉，含行程时间线、住宿美食、避坑贴士">
-<meta property="og:image" content="https://anjie-travel.pages.dev/images/hero-bamboo.jpg">
-<meta property="og:url" content="https://anjie-travel.pages.dev/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="安吉两天一夜 · 经典网红线游玩攻略">
-<meta name="twitter:description" content="竹海·云上草原·乡村治愈，两天一夜轻松玩转安吉">
-<meta name="twitter:image" content="https://anjie-travel.pages.dev/images/hero-bamboo.jpg">
 <style>
   :root{
     --green-900:#143d26; --green-700:#1f6b3c; --green-500:#2f8f52;
@@ -203,192 +226,9 @@
   footer b{color:#fff}
   .totop{position:fixed;right:26px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:50%;background:var(--green-500);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(20,61,38,.3);opacity:0;pointer-events:none;transition:opacity .3s}
   .totop.show{opacity:1;pointer-events:auto}
-
-  /* ===== 移动端 9:16 竖屏适配 ===== */
-  .bottom-nav{display:none}
-  @media(max-width:768px){
-    body{padding-bottom:58px}
-    .wrap{padding:0 16px}
-    section{padding:48px 0}
-    /* 顶部导航：只保留标题，链接移到底部 */
-    .topnav .wrap{height:50px;justify-content:center}
-    .brand{font-size:15px;gap:8px}
-    .brand .logo{width:28px;height:28px;font-size:15px;border-radius:8px}
-    .topnav .nav-links{display:none !important}
-    /* 底部固定导航栏 */
-    .bottom-nav{
-      display:flex;position:fixed;bottom:0;left:0;right:0;z-index:100;
-      background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
-      border-top:1px solid rgba(20,61,38,.1);
-      padding:7px 2px calc(7px + env(safe-area-inset-bottom));
-      box-shadow:0 -4px 16px rgba(20,61,38,.08);
-    }
-    .bottom-nav a{
-      flex:1;text-align:center;text-decoration:none;color:var(--ink-soft);
-      font-size:11px;font-weight:700;padding:5px 2px;letter-spacing:.5px;
-      border-radius:8px;transition:color .2s,background .2s;
-    }
-    .bottom-nav a:active{background:var(--green-100);color:var(--green-700)}
-    /* Hero 竖屏优化 */
-    .hero{min-height:720px;margin-top:50px;padding:20px 0;display:flex;align-items:center;justify-content:center}
-    .hero .inner{padding:28px 22px;background:rgba(10,35,20,.68);backdrop-filter:blur(10px);border-radius:18px;border:1px solid rgba(255,255,255,.2);max-width:340px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.35);flex-shrink:0}
-    .hero .eyebrow{font-size:11px;letter-spacing:2px;padding:6px 14px;margin-bottom:18px}
-    .hero h1{font-size:38px;letter-spacing:2px;line-height:1.25}
-    .hero .sub{font-size:15px;letter-spacing:1px;margin-top:14px}
-    .hero .desc{font-size:12px;margin-top:10px;line-height:1.6}
-    .hero .badges{gap:8px;margin-top:22px}
-    .hero .badge{font-size:11px;padding:6px 12px}
-    .hero .cta{margin-top:26px;gap:10px;flex-direction:column;align-items:center}
-    .hero .cta .btn{width:200px;text-align:center}
-    .btn{padding:12px 28px;font-size:14px}
-    .hero::after{background:linear-gradient(180deg,rgba(10,35,20,.65) 0%,rgba(10,35,20,.55) 30%,rgba(10,35,20,.65) 60%,rgba(10,35,20,.88) 100%)}
-    .hero h1{text-shadow:0 2px 20px rgba(0,0,0,.55)}
-    .hero .sub,.hero .desc{text-shadow:0 1px 10px rgba(0,0,0,.45)}
-    .scroll-hint{display:none}
-    /* 区块标题 */
-    .sec-head{margin-bottom:30px}
-    .sec-tag{font-size:11px;padding:5px 12px;margin-bottom:12px}
-    .sec-head h2{font-size:24px;letter-spacing:1px}
-    .sec-head p{font-size:13px;margin-top:8px}
-    /* 图片全部改为比例自适应，杜绝拉伸 */
-    .tl-card img{height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin-top:12px}
-    .panel img{height:auto;aspect-ratio:16/10}
-    .play-card img{height:auto;aspect-ratio:4/3}
-    .food-card img{height:auto;aspect-ratio:4/3}
-    .farewell img{min-height:0;aspect-ratio:4/3;display:block}
-    .stay-card{min-height:300px}
-    .stay-card .info{padding:20px}
-    .stay-card h4{font-size:18px}
-    .stay-card p{font-size:12.5px}
-    .stay-card .price{font-size:12px;padding:3px 12px}
-    /* 时间线竖屏布局 */
-    .tl::before{left:70px}
-    .tl-item{gap:10px;margin-bottom:18px}
-    .tl-time{flex:0 0 58px;font-size:11px;padding-top:3px;text-align:right;line-height:1.4}
-    .tl-dot{flex:0 0 10px;height:10px;margin-top:7px}
-    .tl-card{padding:16px 16px}
-    .tl-card h4{font-size:15.5px;margin-bottom:4px}
-    .tl-card p{font-size:12.5px}
-    .tl-card .meta{gap:5px;margin:8px 0 10px}
-    .meta span{font-size:10.5px;padding:3px 9px}
-    /* 概览卡片 */
-    .feature{padding:20px 18px}
-    .feature .num{font-size:10.5px}
-    .feature h3{font-size:16.5px;margin:6px 0 8px}
-    .feature p{font-size:12.5px}
-    .day-card .head{padding:12px 16px}
-    .day-card .head h3{font-size:15.5px}
-    .day-card .head .sub{font-size:10.5px}
-    .day-card .body{padding:16px}
-    .day-card .body p{font-size:12.5px}
-    .day-card .spots{gap:6px;margin-top:12px}
-    .chip{font-size:11px;padding:4px 10px}
-    /* Day2 信息条 */
-    .tipbar{gap:10px;margin-bottom:20px}
-    .tip{padding:14px 16px}
-    .tip h5{font-size:13.5px;margin-bottom:4px}
-    .tip p{font-size:12px}
-    .info-grid{gap:10px}
-    .info-card{padding:14px 16px}
-    .info-card .k{font-size:10.5px}
-    .info-card h5{font-size:13.5px;margin:5px 0 6px}
-    .info-card p{font-size:12px}
-    /* 必玩项目 */
-    .play-card .body{padding:14px 16px}
-    .play-card .no{font-size:10.5px}
-    .play-card h4{font-size:15.5px;margin:5px 0 6px}
-    .play-card p{font-size:12px}
-    /* 美食 */
-    .food-sec{margin-bottom:26px}
-    .food-sec h3{font-size:18px;margin-bottom:12px}
-    .food-card .body{padding:14px 16px}
-    .food-card h4{font-size:14.5px;margin-bottom:6px}
-    .food-card p{font-size:12px}
-    .mini{padding:14px 16px}
-    .mini h5{font-size:13.5px;margin-bottom:5px}
-    .mini p{font-size:11.5px}
-    /* 告别 */
-    .farewell .body{padding:28px 20px}
-    .farewell .body h3{font-size:20px;margin-bottom:10px}
-    .farewell .body p{font-size:12.5px}
-    .farewell .meta{margin-top:14px;gap:8px}
-    .farewell .meta div{font-size:12px;padding:8px 12px}
-    /* 避坑贴士 */
-    .tips-grid{gap:12px}
-    .tips-card{padding:16px;gap:12px}
-    .tips-card .n{flex:0 0 32px;height:32px;font-size:13.5px;border-radius:9px}
-    .tips-card h5{font-size:14px;margin-bottom:4px}
-    .tips-card p{font-size:12px}
-    .night-note{margin-top:18px;padding:12px 16px;font-size:12.5px}
-    /* 分隔横幅 */
-    .divider{height:200px}
-    .divider .quote{font-size:14.5px;letter-spacing:1px;padding:0 20px;line-height:1.6}
-    footer{padding:24px 16px 70px;font-size:11.5px}
-  }
-  /* 超小屏进一步收紧 */
-  @media(max-width:380px){
-    .nav-links{gap:7px}
-    .nav-links a{font-size:10px}
-    .hero h1{font-size:34px}
-    .hero .sub{font-size:14px}
-    .sec-head h2{font-size:22px}
-  }
-
-
-  /* ===== UI 体验优化 ===== */
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1)}
-  .reveal.visible{opacity:1;transform:translateY(0)}
-  /* 底部导航图标化 */
-  .bottom-nav a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 2px}
-  .bottom-nav a .ico{font-size:17px;line-height:1;display:block;transition:transform .2s}
-  .bottom-nav a{font-size:10px;font-weight:700}
-  .bottom-nav a.active{color:var(--green-700)}
-  .bottom-nav a.active .ico{transform:scale(1.18)}
-  /* 时间线时间标签增强 */
-  .tl-time{background:var(--green-50);border:1px solid var(--green-100);padding:5px 10px;border-radius:10px;line-height:1.4}
-  /* 卡片悬浮增强 */
-  .feature,.play-card,.food-card,.panel,.day-card{transition:transform .25s,box-shadow .25s}
-  .feature:hover,.play-card:hover,.food-card:hover,.panel:hover,.day-card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(20,61,38,.13)}
-  /* 正文可读性提升 */
-  .tl-card p,.feature p,.day-card .body p,.stay-card p,.play-card p,.food-card p,.tips-card p,.info-card p,.tip p{line-height:1.85}
-  /* 回到顶部按钮增强 */
-  .totop{width:50px;height:50px;font-size:22px;box-shadow:0 8px 24px rgba(20,61,38,.35)}
-  /* 区块间距微调 */
-  .sec-head{margin-bottom:44px}
-  /* 移动端底部导航图标适配 */
-  @media(max-width:768px){
-    .bottom-nav a .ico{font-size:16px}
-    .bottom-nav a{font-size:9px;gap:1px;padding:3px 1px}
-    .bottom-nav a .ico{font-size:15px}
-    .tl-time{font-size:11px;padding:4px 8px}
-  }
-
-  /* ===== 缺图卡片视觉占位区 ===== */
-  .card-visual{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-  .card-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.18),transparent 60%)}
-  .card-visual .card-ico{font-size:64px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.25));position:relative;z-index:1}
-  .cv-sky{background:linear-gradient(135deg,#1a5276,#2e86c1,#5dade2)}
-  .cv-cliff{background:linear-gradient(135deg,#7b241c,#c0392b,#e67e22)}
-  .cv-warm{background:linear-gradient(135deg,#7d6608,#b7950b,#f4d03f)}
-  .cv-rice{background:linear-gradient(135deg,#2c3e50,#4a235a,#6c3483)}
-  /* Day2 提示条图标 */
-  .tip-ico{font-size:28px;margin-bottom:8px;display:block}
-  /* Day2 板块间距优化，增加呼吸感 */
-  .tipbar{margin-bottom:40px}
-  .info-grid{margin-bottom:8px}
-  /* 移动端适配 */
-  @media(max-width:768px){
-    .card-visual{height:auto;aspect-ratio:4/3}
-    .card-visual .card-ico{font-size:48px}
-    .tip-ico{font-size:24px;margin-bottom:6px}
-  }
-
-  /* ===== 阅读进度条 ===== */
-  .progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--green-500),var(--green-300));z-index:200;width:0%;transition:width .1s linear;box-shadow:0 0 8px rgba(47,143,82,.4)}
 </style>
 </head>
 <body>
-<div class="progress-bar" id="progressBar"></div>
 
 <nav class="topnav">
   <div class="wrap">
@@ -398,7 +238,6 @@
       <li><a href="#day1">DAY 1</a></li>
       <li><a href="#stay">住宿建议</a></li>
       <li><a href="#day2">DAY 2</a></li>
-      <li><a href="#day2-play">必玩项目</a></li>
       <li><a href="#food">必吃美食</a></li>
       <li><a href="#tips">避坑贴士</a></li>
     </ul>
@@ -406,7 +245,7 @@
 </nav>
 
 <header class="hero">
-  <img class="bg" alt="安吉竹海山林风光" src="images/hero-bamboo.jpg">
+  {{IM_hero}}
   <div class="inner">
     <span class="eyebrow">经典网红线 · 两天一夜</span>
     <h1>安吉两天一夜</h1>
@@ -485,7 +324,7 @@
           <h4>中国大竹海</h4>
           <div class="meta"><span>门票 58元/人</span><span>《卧虎藏龙》取景地</span><span>天然氧吧</span></div>
           <p>漫步于连绵起伏的竹林间，仿佛闯入了武侠电影的世界。这里不仅是《卧虎藏龙》的经典取景地，更是远离城市喧嚣的天然氧吧。深呼吸一口，满是清新的竹香，让人心旷神怡。万亩竹林浩瀚如海，登顶观竹楼可俯瞰竹海全景，视野开阔，是摄影爱好者的天堂，随手一拍皆是大片。</p>
-          <img class="" alt="中国大竹海" src="images/dazhuhai.jpg">
+          {{IM_dazhuhai}}
         </div>
       </div>
       <div class="tl-item">
@@ -504,7 +343,7 @@
           <h4>安吉余村</h4>
           <div class="meta"><span>门票免费</span><span>"两山"理念发源地</span></div>
           <p>这里是"绿水青山就是金山银山"的发源地，白墙黛瓦的江南村落被溪水温柔环绕。漫步青石板路，目之所及皆是田园诗意，随手一拍便是清新治愈的田园大片，是感受自然与人文交融的绝佳之地。</p>
-          <img class="" alt="安吉余村" src="images/yucun.jpg">
+          {{IM_yucun}}
         </div>
       </div>
       <div class="tl-item">
@@ -514,7 +353,7 @@
           <h4>瀑布咖啡 · 矿坑秘境</h4>
           <div class="meta"><span>湖光山色间的网红地标</span></div>
           <p>藏在废弃矿坑中的绝美角落，茅草屋顶的小屋临湖而建，背后是倾泻而下的瀑布。在这里点上一杯香醇咖啡，伴着水声与微风，享受独一份的山野松弛感，是旅途中不可错过的惬意体验。</p>
-          <img class="" alt="矿坑瀑布咖啡" src="images/pubu-cafe.jpg">
+          {{IM_coffee}}
         </div>
       </div>
     </div>
@@ -522,7 +361,7 @@
 </section>
 
 <div class="divider">
-  <img class="bg" alt="安吉竹林" src="images/divider-bamboo.jpg">
+  <img class="bg" alt="安吉竹林" src="{{SRC_bamboo}}">
   <div class="quote">置身天然氧吧，品味地道风味，开启一场治愈身心的竹海之旅</div>
 </div>
 
@@ -536,7 +375,7 @@
     </div>
     <div class="stay-grid">
       <div class="stay-card">
-        <img class="" alt="山间特色民宿" src="images/minsu.jpg">
+        {{IM_minsu}}
         <div class="info">
           <div class="no">01 推荐首选</div>
           <h4>山川乡 / 天荒坪镇</h4>
@@ -569,17 +408,14 @@
     </div>
     <div class="tipbar">
       <div class="tip">
-        <div class="tip-ico">🎫</div>
         <h5>提前购票</h5>
         <p>建议提前网购门票与索道票，尽量在 9 点前入园，避开排队高峰。</p>
       </div>
       <div class="tip">
-        <div class="tip-ico">🧥</div>
         <h5>注意温差</h5>
         <p>山顶气温比山下低 5-8℃，记得备好薄外套，防风保暖。</p>
       </div>
       <div class="tip">
-        <div class="tip-ico">👟</div>
         <h5>安全着装</h5>
         <p>体验高空项目时，避免穿着短裙或拖鞋，确保游玩安全与便利。</p>
       </div>
@@ -614,7 +450,7 @@
     </div>
     <div class="play-grid">
       <div class="play-card">
-        <img class="" alt="天空之阶玻璃栈道" src="images/sky-bridge.jpg">
+        {{IM_glass}}
         <div class="body">
           <div class="no">01 网红地标</div>
           <h4>天空之阶</h4>
@@ -622,7 +458,7 @@
         </div>
       </div>
       <div class="play-card">
-        <img class="" alt="彩虹滑草" src="images/rainbow-slide.jpg">
+        {{IM_slide}}
         <div class="body">
           <div class="no">02 速度激情</div>
           <h4>彩虹滑草</h4>
@@ -630,7 +466,7 @@
         </div>
       </div>
       <div class="play-card">
-        <img class="" alt="霍比特小镇" src="images/hobbit-town.jpg">
+        {{IM_hobbit}}
         <div class="body">
           <div class="no">03 童话世界</div>
           <h4>霍比特小镇</h4>
@@ -638,24 +474,21 @@
         </div>
       </div>
       <div class="play-card">
-        <div class="card-visual cv-sky"><span class="card-ico">🏔️</span></div>
-        <div class="body">
+        <div class="body" style="padding-top:26px">
           <div class="no">04 惊险挑战</div>
           <h4>云端步道 · 步步惊心</h4>
           <p>依悬崖而建的悬空步道，脚下是翻滚的云海与万丈深渊，每一步都能感受心跳加速的刺激，仿佛漫步在云端边缘。</p>
         </div>
       </div>
       <div class="play-card">
-        <div class="card-visual cv-cliff"><span class="card-ico">🎢</span></div>
-        <div class="body">
+        <div class="body" style="padding-top:26px">
           <div class="no">05 勇敢者挑战</div>
           <h4>悬崖秋千 · 肾上腺素飙升</h4>
           <p>从悬崖边纵身一跃，在百米高空尽情荡漾，感受失重带来的极致快感，是勇敢者的专属挑战，留下难忘的尖叫体验。</p>
         </div>
       </div>
       <div class="play-card">
-        <div class="card-visual cv-warm"><span class="card-ico">🍱</span></div>
-        <div class="body">
+        <div class="body" style="padding-top:26px">
           <div class="no">06 能量补给</div>
           <h4>山顶补给 · 能量加油站</h4>
           <p>山顶设有观景餐厅，提供地道的山野简餐与特色小吃；也可自带零食、饮用水，在云海相伴中享受惬意的午餐时光。</p>
@@ -678,7 +511,7 @@
           <div>16:00 启程返程 · 带着满满的美好回忆，结束愉快的安吉之旅，平安踏上归途</div>
         </div>
       </div>
-      <img class="" alt="白茶观景台茶园" src="images/white-tea.jpg">
+      {{IM_tea}}
     </div>
   </div>
 </section>
@@ -696,14 +529,14 @@
       <h3>01 硬菜推荐 · 地道山野风味</h3>
       <div class="food-grid">
         <div class="food-card">
-          <img class="" alt="竹林土鸡煲" src="images/chicken-soup.jpg">
+          {{IM_chicken}}
           <div class="body">
             <h4>竹林土鸡煲</h4>
             <p>选用散养竹林鸡，文火慢炖出金黄浓汤，鸡肉鲜嫩脱骨，汤汁浓郁鲜美，尽显食材本味。</p>
           </div>
         </div>
         <div class="food-card">
-          <img class="" alt="笋干烧肉" src="images/bamboo-shoot-pork.jpg">
+          {{IM_pork}}
           <div class="body">
             <h4>笋干烧肉</h4>
             <p>陈年笋干吸饱五花肉油脂，肥而不腻，肉香与笋鲜交织，咸甜适口，是下饭的绝佳伴侣。</p>
@@ -716,15 +549,14 @@
       <h3>02 特色小吃 · 舌尖上的清甜</h3>
       <div class="food-grid">
         <div class="food-card">
-          <img class="" alt="安吉干挑面" src="images/gan-tiao-noodles.jpg">
+          {{IM_noodle}}
           <div class="body">
             <h4>安吉干挑面</h4>
             <p>当地特色碱水面，口感劲道爽滑，佐以雪菜、肉丝等鲜美的浇头，干香入味，回味无穷。</p>
           </div>
         </div>
         <div class="food-card">
-          <div class="card-visual cv-rice"><span class="card-ico">🍚</span></div>
-          <div class="body">
+          <div class="body" style="padding-top:34px">
             <h4>乌米饭</h4>
             <p>南烛叶汁浸泡糯米蒸制而成，色泽乌润，口感软糯香甜，带着独特的草木清香，营养丰富。</p>
           </div>
@@ -812,54 +644,36 @@
 <button class="totop" id="totop" title="返回顶部">↑</button>
 
 <script>
-  // 图片懒加载（首屏 hero 图除外）
-  document.querySelectorAll('img').forEach(function(img,i){ if(i>0) img.loading='lazy'; });
-  // 滚动渐入动画
-  var revealEls = document.querySelectorAll('.feature,.day-card,.tl-item,.stay-card,.tip,.info-card,.play-card,.food-card,.mini,.tips-card,.farewell,.divider');
-  revealEls.forEach(function(el){ el.classList.add('reveal'); });
-  if('IntersectionObserver' in window){
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-      });
-    },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
-    revealEls.forEach(function(el){ observer.observe(el); });
-  } else { revealEls.forEach(function(el){ el.classList.add('visible'); }); }
   // 返回顶部
   var totop = document.getElementById("totop");
   window.addEventListener("scroll", function(){
-    if(window.scrollY > 500){ totop.classList.add("show"); } else { totop.classList.remove("show"); }
+    if(window.scrollY > 600){ totop.classList.add("show"); } else { totop.classList.remove("show"); }
   });
   totop.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
-  // 阅读进度条
-  var progressBar = document.getElementById("progressBar");
-  window.addEventListener("scroll", function(){
-    var scrollTop = window.scrollY || document.documentElement.scrollTop;
-    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    progressBar.style.width = progress + "%";
-  });
-  // 导航高亮（顶部 + 底部同步）
-  var allLinks = document.querySelectorAll('.nav-links a, .bottom-nav a');
+  // 导航高亮
+  var links = document.querySelectorAll(".nav-links a");
   var map = {};
-  allLinks.forEach(function(a){ map[a.getAttribute("href").slice(1)] = a; });
-  var sections = Object.keys(map).map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  links.forEach(function(a){ map[a.getAttribute("href").slice(1)] = a; });
+  var sections = Object.keys(map).map(function(id){ return document.getElementById(id); });
   window.addEventListener("scroll", function(){
-    var pos = window.scrollY + 150;
+    var pos = window.scrollY + 120;
     var cur = null;
-    sections.forEach(function(s){ if(s.offsetTop <= pos) cur = s.id; });
-    allLinks.forEach(function(a){ a.classList.remove("active"); });
+    sections.forEach(function(s){ if(s && s.offsetTop <= pos) cur = s.id; });
+    links.forEach(function(a){ a.classList.remove("active"); });
     if(cur && map[cur]) map[cur].classList.add("active");
   });
 </script>
-<nav class="bottom-nav">
-  <a href="#overview"><span class="ico">📋</span>概览</a>
-  <a href="#day1"><span class="ico">🎋</span>DAY1</a>
-  <a href="#stay"><span class="ico">🏡</span>住宿</a>
-  <a href="#day2"><span class="ico">⛰️</span>DAY2</a>
-  <a href="#day2-play"><span class="ico">🎢</span>必玩</a>
-  <a href="#food"><span class="ico">🍜</span>美食</a>
-  <a href="#tips"><span class="ico">💡</span>贴士</a>
-</nav>
 </body>
 </html>
+"""
+
+# 替换图片占位符
+for key, tag in IM.items():
+    HTML = HTML.replace("{{IM_%s}}" % key, tag)
+for key, src in SRC.items():
+    HTML = HTML.replace("{{SRC_%s}}" % key, src)
+
+out = os.path.join(os.path.dirname(__file__), "index.html")
+with open(out, "w", encoding="utf-8") as f:
+    f.write(HTML)
+print("生成完成:", out, f"{os.path.getsize(out)/1024/1024:.2f} MB")

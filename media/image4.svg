@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="text/ecmascript" fill="none" width="48" zoomAndPan="magnify" style="stroke-opacity: 1.0;" contentStyleType="text/css" viewBox="0 0 48 48" height="48" preserveAspectRatio="xMidYMid meet" version="1.0">
+<ellipse fill-opacity="1.0" fill="#4CAF50" rx="15" cx="24" ry="16" cy="20" stroke="#4CAF50" stroke-width="2.0"/>
+<path d="M24 14L24 36" stroke-width="2.0" stroke-linejoin="round" stroke-linecap="round" stroke="white"/>
+<path stroke-width="2.0" d="M30 34.6689C28.1626 35.5253 26.1333 36.0003 24 36.0003C21.8667 36.0003 19.8374 35.5253 18 34.6689" stroke="#4CAF50"/>
+<path d="M24 36L24 44" stroke-width="2.0" stroke-linejoin="round" stroke-linecap="round" stroke="#4CAF50"/>
+<path d="M24 22L30 16" stroke-width="2.0" stroke-linejoin="round" stroke-linecap="round" stroke="white"/>
+<path d="M24 29L18 23" stroke-width="2.0" stroke-linejoin="round" stroke-linecap="round" stroke="white"/>
+</svg>
