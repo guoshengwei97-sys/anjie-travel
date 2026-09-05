@@ -234,7 +234,7 @@
     .hero::after{background:linear-gradient(180deg,rgba(10,35,20,.65) 0%,rgba(10,35,20,.55) 30%,rgba(10,35,20,.65) 60%,rgba(10,35,20,.88) 100%)}
     .hero h1{text-shadow:0 2px 20px rgba(0,0,0,.55)}
     .hero .sub,.hero .desc{text-shadow:0 1px 10px rgba(0,0,0,.45)}
-    .scroll-hint{font-size:11px;bottom:16px}
+    .scroll-hint{display:none}
     /* 区块标题 */
     .sec-head{margin-bottom:30px}
     .sec-tag{font-size:11px;padding:5px 12px;margin-bottom:12px}
@@ -349,7 +349,8 @@
   /* 移动端底部导航图标适配 */
   @media(max-width:768px){
     .bottom-nav a .ico{font-size:16px}
-    .bottom-nav a{font-size:9.5px;gap:2px}
+    .bottom-nav a{font-size:9px;gap:1px;padding:3px 1px}
+    .bottom-nav a .ico{font-size:15px}
     .tl-time{font-size:11px;padding:4px 8px}
   }
 </style>
@@ -364,6 +365,7 @@
       <li><a href="#day1">DAY 1</a></li>
       <li><a href="#stay">住宿建议</a></li>
       <li><a href="#day2">DAY 2</a></li>
+      <li><a href="#day2-play">必玩项目</a></li>
       <li><a href="#food">必吃美食</a></li>
       <li><a href="#tips">避坑贴士</a></li>
     </ul>
@@ -807,6 +809,7 @@
   <a href="#day1"><span class="ico">🎋</span>DAY1</a>
   <a href="#stay"><span class="ico">🏡</span>住宿</a>
   <a href="#day2"><span class="ico">⛰️</span>DAY2</a>
+  <a href="#day2-play"><span class="ico">🎢</span>必玩</a>
   <a href="#food"><span class="ico">🍜</span>美食</a>
   <a href="#tips"><span class="ico">💡</span>贴士</a>
 </nav>
