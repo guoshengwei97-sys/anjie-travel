@@ -385,6 +385,12 @@
 
   /* ===== 阅读进度条 ===== */
   .progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--green-500),var(--green-300));z-index:200;width:0%;transition:width .1s linear;box-shadow:0 0 8px rgba(47,143,82,.4)}
+
+  /* ===== HACKER 标签 ===== */
+  .hacker-tag{display:inline-block;font-size:13px;font-weight:900;letter-spacing:4px;background:var(--orange);color:#fff;padding:7px 20px;border-radius:999px;margin-bottom:22px;box-shadow:0 4px 16px rgba(217,123,52,.4);font-family:"Courier New",monospace}
+  @media(max-width:768px){
+    .hacker-tag{font-size:11px;letter-spacing:3px;padding:6px 16px;margin-bottom:16px}
+  }
 </style>
 </head>
 <body>
@@ -409,6 +415,7 @@
   <img class="bg" alt="安吉竹海山林风光" src="images/hero-bamboo.jpg">
   <div class="inner">
     <span class="eyebrow">经典网红线 · 两天一夜</span>
+    <span class="hacker-tag">HACKER</span>
     <h1>安吉两天一夜</h1>
     <div class="sub">奔赴一场自然与治愈的山野之约</div>
     <div class="desc">解锁江浙沪周边的宝藏避暑胜地</div>
